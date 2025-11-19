@@ -73,6 +73,21 @@ echo "Cifrado completado: mensaje.enc generado."
 > - Cifra el mensaje usando AES-256-CBC
 > - Guarda la clave en clave_sim.hex
 
+Creamos el fichero con el comando
+```
+sudo nano desencriptado.sh
+```
+Y agregaremos el script que desencriptará el mensaje
+
+```
+#!/bin/bash
+
+openssl rand -hex 32 > clave_sim.hex
+openssl enc -aes-256-cbc -pbkdf2 -salt -in mensaje.txt -out mensaje.enc -pass file:./clave_sim.hex
+
+echo "Cifrado completado: mensaje.enc generado."
+```
+
 ---
 
 ## Cifrado Asimétrico
