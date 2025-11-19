@@ -12,6 +12,7 @@
 > - **Carlos** – Explicación teórica del cifrado asimétrico, claves y aplicaciones
 > - **Santino** – Implementación práctica del cifrado asimétrico con RSA mediante scripts
 
+## [Presentación en CANVA](https://www.canva.com/design/DAG4hFye_-E/8Gek5p1FkXyF8cNlV0mPag/view?utm_content=DAG4hFye_-E&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h3d008c795c)
 ---
 
 # Introducción a la Criptografía
