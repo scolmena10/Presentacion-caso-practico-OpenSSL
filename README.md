@@ -13,6 +13,7 @@
 > - **Santino** – Implementación práctica del cifrado asimétrico con RSA mediante scripts
 
 ## [Presentación en CANVA](https://www.canva.com/design/DAG4hFye_-E/8Gek5p1FkXyF8cNlV0mPag/view?utm_content=DAG4hFye_-E&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h3d008c795c)
+
 ---
 
 # Introducción a la Criptografía
@@ -34,9 +35,8 @@ El Cifrado Simétrico es tipo de algoritmos criptográfico que usa la misma clav
 > Se puede usar otro tipo de cifrado llamado asimétrico, que no necesita compartir la misma clave, por ejemplo:
 > Yo tengo una clave pública que la puede saber todo el mundo para cifrar los mensajes y una privada que sólo se yo, cualquiera puede usar mi clave pública para poder cifrar el mensaje y solo yo con la privada descifrarlo
 
-## Implementación Técnica
+## Implementación Práctica (Cifrado Simétrico)
 
-### Cifrado Simétrico
 Se utiliza AES-256-CBC en Ubuntu con OpenSSL
 
 Creamos el directorio `cifrado_simetrico` en Ubuntu para agrupar las claves, mensajes y scripts
@@ -140,7 +140,9 @@ Los algoritmos asimétricos son un tipo de criptografía que usa dos claves dife
 > ### Ejemplo práctico
 > - Santino usa la clave pública de la empresa para cifrar un mensaje, y solo la empresa con su clave privada puede descifrarlo
 
-### Cifrado Asimétrico con RSA
+## Implementación Práctica (Cifrado Asimétrico)
+
+Se utiliza RSA
 
 Crearé un directorio llamado `presentación` para no dejar los archivos sueltos
 
