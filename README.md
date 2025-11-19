@@ -66,6 +66,12 @@ openssl enc -aes-256-cbc -pbkdf2 -salt -in mensaje.txt -out mensaje.enc -pass fi
 
 echo "Cifrado completado: mensaje.enc generado."
 ```
+Daremos permisos y ejecutaremos el script
+```
+chmod +x encriptado.sh
+./encriptado.sh
+```
+
 > [!NOTE]
 > #### ¿Qué hace este script?
 >
@@ -86,7 +92,11 @@ openssl enc -d -aes-256-cbc -pbkdf2 -in mensaje.enc -out mensaje_decrypted.txt -
 
 echo "Descifrado completado: se generó mensaje_decrypted.txt"
 ```
-
+Daremos permisos y ejecutaremos el script
+```
+chmod +x desencriptado.sh
+./desencriptado.sh
+```
 ---
 
 ## Cifrado Asimétrico
