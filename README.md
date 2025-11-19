@@ -76,7 +76,7 @@ chmod +x encriptado.sh
 > #### ¿Qué hace este script?
 >
 > - Genera una clave segura de 256 bits
-> - Cifra el mensaje usando AES-256-CBC
+> - Cifra el mensaje usando AES-256-CBC en mensaje.enc
 > - Guarda la clave en clave_sim.hex
 
 Creamos el fichero con el comando
@@ -88,15 +88,21 @@ Y agregaremos el script que desencriptará el mensaje
 ```bash
 #!/bin/bash
 
-openssl enc -d -aes-256-cbc -pbkdf2 -in mensaje.enc -out mensaje_decrypted.txt -pass file:./clave_sim.hex
+openssl enc -d -aes-256-cbc -pbkdf2 -in mensaje.enc -out mensaje_desencriptado.txt -pass file:./clave_sim.hex
 
-echo "Descifrado completado: se generó mensaje_decrypted.txt"
+echo "Descifrado completado: se generó mensaje_desencriptado.txt"
 ```
 Daremos permisos y ejecutaremos el script
 ```
 chmod +x desencriptado.sh
 ./desencriptado.sh
 ```
+Una vez ejecutado el script podremos ver el mensaje desencriptado
+```
+cat mensaje_desencriptado.txt
+Hola, esto es un mensaje secretoooo
+```
+
 ---
 
 ## Cifrado Asimétrico
