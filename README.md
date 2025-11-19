@@ -69,7 +69,7 @@ echo "Cifrado completado: mensaje.enc generado."
 ```
 Daremos permisos y ejecutaremos el script
 ```
-chmod +x encriptado.sh
+sudo chmod +x encriptado.sh
 ./encriptado.sh
 ```
 
@@ -95,7 +95,7 @@ echo "Descifrado completado: se generó mensaje_desencriptado.txt"
 ```
 Daremos permisos y ejecutaremos el script
 ```
-chmod +x desencriptado.sh
+sudo chmod +x desencriptado.sh
 ./desencriptado.sh
 ```
 Una vez ejecutado el script podremos ver el mensaje desencriptado
@@ -158,15 +158,16 @@ Generaré las claves, privada, la clave secreta y clave pública (la clave que s
 ```
 #!/bin/bash
 
-echo “Creando las dos claves”
+echo "Creando las dos claves"
 
 openssl genrsa -out presentacion_privada.key 1024
 
-openssl rsa -out presentacion_privada.key -pubout -out presentacion_publica.pem
+openssl rsa -in presentacion_privada.key -pubout -out presentacion_publica.pem
+
 ```
 Daremos permisos y ejecutaremos el script
 ```
-chmod +x script1.sh
+sudo chmod +x script1.sh
 ./script1.sh
 ```
 > [!NOTE]
@@ -180,13 +181,15 @@ Cifraremos mensaje que necesitemos enviar con la clave pública `presentacion_pu
 ```bash
 echo “HOLAAAAAA” | openssl pkeyutl -encrypt -pubin -inkey presentacion_publica.pem -out mensaje.dat
 ```
+Podremos ver el mensaje cifrado
+```
+cat mensaje.dat
+y|2����-���Tq�/�k����J�+��)	?�:�=�ŉ~k�)�[ᅛ��w;�
+7������%��>$��o\�������                             ��M
+```
 Una vez tengamos el mensaje cifrado lo podremos descifrar con la clave privada `presentacion_privada.key` con el comando
 ```bash
 openssl pkeyutl -decrypt -inkey presentacion_privada.key -in mensaje.dat
-```
-Una vez ejecutado el script podremos ver el mensaje desencriptado
-```
-cat mensaje.dat
 HOLAAAAAA
 ```
 > [!NOTE]
