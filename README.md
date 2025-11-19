@@ -38,17 +38,17 @@ El Cifrado Simétrico es tipo de algoritmos criptográfico que usa la misma clav
 ### Cifrado Simétrico
 Se utiliza AES-256-CBC en Ubuntu con OpenSSL
 
-Creamos el directorio cifrado_simetrico en Ubuntu para agrupar las claves, mensajes y scripts
+Creamos el directorio `cifrado_simetrico` en Ubuntu para agrupar las claves, mensajes y scripts
 
 ```
 mkdir cifrado_simetrico
 cd cifrado_simetrico
 ```
-Creamos un archivo de texto llamado mensaje.txt con el comando 
+Creamos un archivo de texto llamado `mensaje.txt` con el comando 
 ```
 echo "(mensaje para cifrar)" > mensaje.txt
 ```
-y después comprobamos si se ha creado con el comando ( cat mensaje.txt )
+y después comprobamos si se ha creado con el comando
 ```
 cat mensaje.txt
 Hola, esto es un mensaje secretoooo
@@ -102,6 +102,15 @@ Una vez ejecutado el script podremos ver el mensaje desencriptado
 cat mensaje_desencriptado.txt
 Hola, esto es un mensaje secretoooo
 ```
+> [!NOTE]
+> #### Estructura final del directorio
+>
+> cifrado_simetrico
+> - mensaje.txt
+> - clave_sim.hex
+> - mensaje_desencriptado.txt
+> - encriptado.sh
+> - desencriptado.sh
 
 ---
 
@@ -128,8 +137,78 @@ Los algoritmos asimétricos son un tipo de criptografía que usa dos claves dife
 
 > [!NOTE]
 > ### Ejemplo práctico
-> 
 > - Santino usa la clave pública de la empresa para cifrar un mensaje, y solo la empresa con su clave privada puede descifrarlo
 
+### Cifrado Asimétrico con RSA
 
+Crearé un directorio llamado `presentación` para no dejar los archivos sueltos
 
+```
+mkdir presentacion
+cd presentacion
+```
+Dentro del directorio `presentacion` crearé el script
+```
+sudo nano script1.sh
+```
+Generaré las claves, privada, la clave secreta y clave pública (la clave que se comparte)
+```
+#!/bin/bash
+
+echo “Creando las dos claves”
+
+openssl genrsa -out presentacion_privada.key 1024
+
+openssl rsa -out presentacion_privada.key -pubout -out presentacion_publica.pem
+```
+Daremos permisos y ejecutaremos el script
+```
+chmod +x script1.sh
+./script1.sh
+```
+> [!NOTE]
+> #### ¿Qué hace este script?
+>
+> - Genera una clave privada RSA de 1024 bits en presentacion_privada.key
+> - Crea la clave pública derivada de la clave privada (la cual puede compartirse) en presentacion_publica.pem
+> - Deja listas ambas claves para el proceso de cifrado/descifrado
+
+Cifraremos mensaje que necesitemos enviar con la clave pública `presentacion_publica.pem` con el comando
+```bash
+echo “HOLAAAAAA” | openssl pkeyutl -encrypt -pubin -inkey presentacion_publica.pem -out mensaje.dat
+```
+Una vez tengamos el mensaje cifrado lo podremos descifrar con la clave privada `presentacion_privada.key` con el comando
+```bash
+openssl pkeyutl -decrypt -inkey presentacion_privada.key -in mensaje.dat
+```
+Una vez ejecutado el script podremos ver el mensaje desencriptado
+```
+cat mensaje.dat
+HOLAAAAAA
+```
+> [!NOTE]
+> #### Estructura final del directorio
+>
+> presentacion
+> - presentacion_privada.key
+> - presentacion_publica.pem
+> - script1.sh
+> - mensaje.dat
+---
+# Conclusión
+Los algoritmos **simétricos y asimétricos** son dos formas diferentes de proteger la información, no compiten sino que se complementan
+- **Los simétricos** destacan por su velocidad y eficiencia, pero requieren compartir la misma clave
+- **Los asimétricos** ofrecen más seguridad, ya que usan dos claves distintas, aunque son más lentos
+
+Gracias al uso de **scripts automatizados**, podemos simplificar y asegurar el proceso de cifrado y descifrado, aplicando estos métodos en entornos reales como empresas o redes seguras
+
+En entornos reales (empresas, redes, servidores), ambos se usan juntos para garantizar confidencialidad, integridad y autenticidad
+
+## Comparativa Final
+
+| **Característica** | **Simétrico**                                        | **Asimétrico**                                         |
+| --------------     | ---------------------------------------------------- | ------------------------------------------------------ |
+| **Claves**         | 1 clave compartida                                   | Clave pública + clave privada                          |
+| **Velocidad**      | Rápido                                               | Más lento                                              |
+| **Seguridad**      | Depende de ocultar la clave                          | Alta seguridad, claves separadas                       |
+| **Uso ideal**      | Cifrado de archivos, VPN, grandes volúmenes de datos | Intercambio de claves, autenticación, firmas digitales |
