@@ -58,7 +58,7 @@ Creamos el fichero con el comando
 sudo nano encriptado.sh
 ```
 Dentro crearemos el script que encriptará el mensaje
-```
+```bash
 #!/bin/bash
 
 openssl rand -hex 32 > clave_sim.hex
@@ -79,13 +79,12 @@ sudo nano desencriptado.sh
 ```
 Y agregaremos el script que desencriptará el mensaje
 
-```
+```bash
 #!/bin/bash
 
-openssl rand -hex 32 > clave_sim.hex
-openssl enc -aes-256-cbc -pbkdf2 -salt -in mensaje.txt -out mensaje.enc -pass file:./clave_sim.hex
+openssl enc -d -aes-256-cbc -pbkdf2 -in mensaje.enc -out mensaje_decrypted.txt -pass file:./clave_sim.hex
 
-echo "Cifrado completado: mensaje.enc generado."
+echo "Descifrado completado: se generó mensaje_decrypted.txt"
 ```
 
 ---
