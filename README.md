@@ -57,7 +57,7 @@ Creamos el fichero con el comando
 ```
 sudo nano encriptado.sh
 ```
-Dentro crearemos el script
+Dentro crearemos el script que encriptará el mensaje
 ```
 #!/bin/bash
 
@@ -66,11 +66,12 @@ openssl enc -aes-256-cbc -pbkdf2 -salt -in mensaje.txt -out mensaje.enc -pass fi
 
 echo "Cifrado completado: mensaje.enc generado."
 ```
-#### ¿Qué hace este script?
-
-- Genera una clave segura de 256 bits
-- Cifra el mensaje usando AES-256-CBC
-- Guarda la clave en clave_sim.hex
+> [!NOTE]
+> #### ¿Qué hace este script?
+>
+> - Genera una clave segura de 256 bits
+> - Cifra el mensaje usando AES-256-CBC
+> - Guarda la clave en clave_sim.hex
 
 ---
 
